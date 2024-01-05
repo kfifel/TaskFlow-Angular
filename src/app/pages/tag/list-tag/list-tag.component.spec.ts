@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { CompetitionComponent } from './competition.component';
+import { ListTagComponent } from './list-tag.component';
 
-describe('CompetitionComponent', () => {
-  let component: CompetitionComponent;
-  let fixture: ComponentFixture<CompetitionComponent>;
+describe('ListTagComponent', () => {
+  let component: ListTagComponent;
+  let fixture: ComponentFixture<ListTagComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ CompetitionComponent ]
+      declarations: [ ListTagComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(CompetitionComponent);
+    fixture = TestBed.createComponent(ListTagComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
