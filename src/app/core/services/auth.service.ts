@@ -13,7 +13,7 @@ import {map} from "rxjs/operators";
 
 export class AuthenticationService {
 
-  private apiUrl: string = environment.apiUrl + "/api/v1/auth/";
+  private apiUrl: string = environment.baseUrl + "/api/v1/auth/";
 
   user: User;
 
