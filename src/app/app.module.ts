@@ -17,6 +17,7 @@ import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { ErrorInterceptor } from './core/helpers/error.interceptor';
 import { JwtInterceptor } from './core/helpers/jwt.interceptor';
+import {StoreModule} from "@ngrx/store";
 
 
 
@@ -48,7 +49,8 @@ export function createTranslateLoader(http: HttpClient): any {
     NgbNavModule,
     NgbTooltipModule,
     ScrollToModule.forRoot(),
-    NgbModule
+    NgbModule,
+    StoreModule.forRoot({}, {})
   ],
   bootstrap: [AppComponent],
   providers: [

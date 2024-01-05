@@ -94,8 +94,8 @@
     "COMPETITION": {
       "TEXT": "Competition"
     },
-    "CHAT": {
-      "TEXT": "Chat",
+    "TASK": {
+      "TEXT": "task",
       "BADGE": "New"
     },
     "FILEMANAGER": {
