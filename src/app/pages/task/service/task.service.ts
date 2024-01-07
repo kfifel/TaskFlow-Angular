@@ -1,7 +1,7 @@
 import {Injectable} from "@angular/core";
 import {HttpClient} from "@angular/common/http";
 import {ITask} from "../task.model";
-import {Observable} from "rxjs";
+import {Observable, of} from "rxjs";
 import {environment} from "../../../../environments/environment";
 
 
@@ -15,7 +15,7 @@ export class TaskService {
   constructor(private http: HttpClient) {
   }
 
-  getAllTask(): Observable<ITask[]> {
+  getAllTasks(): Observable<ITask[]> {
     return this.http.get<ITask[]>(this.apiUrl);
   }
 }

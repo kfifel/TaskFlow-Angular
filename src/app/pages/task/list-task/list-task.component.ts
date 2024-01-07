@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import {ITask} from "../task.model";
 import {Store} from "@ngrx/store";
-import {getIsLoadingTask, State} from "../state/task.reducer";
+import {getIsLoadingTask, getTasks, State} from "../state/task.reducer";
 import * as TaskActions from "../state/task.actions";
+import {Observable} from "rxjs";
 
 @Component({
   selector: 'app-list-task',
@@ -11,7 +12,7 @@ import * as TaskActions from "../state/task.actions";
 })
 export class ListTaskComponent implements OnInit {
 
-  tasks: ITask[];
+  tasks$: Observable<ITask[]>;
   breadCrumbItems: Array<{}> =  [{ label: 'Tasks', link: "/tasks" }, { label: 'Overview', active: true }];
   query: string;
   isLoading: boolean;
@@ -21,6 +22,10 @@ export class ListTaskComponent implements OnInit {
     this.store.select(getIsLoadingTask).subscribe((isLoading) => {
       this.isLoading = isLoading;
     });
+
+    this.store.dispatch(TaskActions.loadTasks());
+
+    this.tasks$ = this.store.select(getTasks);
   }
 
   toggleTasks() {

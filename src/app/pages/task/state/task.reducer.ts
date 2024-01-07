@@ -54,10 +54,17 @@ export const taskReducer = createReducer<TaskState>(
     }
   }),
 
-  on(TaskActions.claireCurrentTask, (state) => {
+  on(TaskActions.claireCurrentTask, (state): TaskState => {
     return {
       ...state,
       currentTask: null
     }
-  })
+  }),
+
+  on(TaskActions.loadTasksSuccess, (state, action): TaskState => {
+    return {
+      ...state,
+      tasks: action.tasks
+    }
+  }),
 );
