@@ -10,7 +10,6 @@ import * as TaskSelectors from "./task.selectors";
 @Injectable()
 export class TaskEffects {
 
-
   constructor(private actions$: Actions,
               private taskService: TaskService,
               private store: Store) {
@@ -39,7 +38,7 @@ export class TaskEffects {
       mergeMap((action) => {
         return this.taskService.save(action.task).pipe(
           map(task => TaskActions.saveTaskSuccess({task})),
-          //catchError((err) => TaskActions.saveTaskError(err))
+          catchError(async (err) => TaskActions.saveTaskError({error: err}))
         )
       })
     )

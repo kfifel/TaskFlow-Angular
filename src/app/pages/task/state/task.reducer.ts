@@ -13,12 +13,14 @@ export interface TaskState {
   isLoading: boolean;
   tasks: ITask[];
   currentTaskId: number | null;
+  taskSavedSuccess: boolean;
   error: string;
 }
 
 const initialState: TaskState =   {
   isLoading: true,
   currentTaskId: null,
+  taskSavedSuccess: false,
   tasks: [],
   error: ''
 };
@@ -37,6 +39,7 @@ export const taskReducer = createReducer<TaskState>(
     return {
       ...state,
       tasks: [...state.tasks, action.task],
+      taskSavedSuccess: true,
       error: ''
     }
   }),
@@ -44,14 +47,16 @@ export const taskReducer = createReducer<TaskState>(
   on(TaskActions.saveTaskError, (state, action): TaskState => {
     return {
       ...state,
-      error: action.error
+      error: action.error,
+      taskSavedSuccess: false,
     }
   }),
 
   on(TaskActions.claireCurrentTask, (state): TaskState => {
     return {
       ...state,
-      currentTaskId: null
+      currentTaskId: null,
+      taskSavedSuccess: false,
     }
   }),
 
