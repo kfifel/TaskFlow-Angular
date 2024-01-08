@@ -5,20 +5,17 @@ import {TaskState} from "./task.reducer";
 const getTaskFeatureState = createFeatureSelector<TaskState>('tasks');
 
 
-export const getIsLoadingTask = createSelector(
-  getTaskFeatureState,
-  state => state.isLoading
-);
+export const getIsLoadingTask = createSelector(getTaskFeatureState,
+    state => state.isLoading);
 
-export const getError = createSelector(
-  getTaskFeatureState,
-  state => state.error
-);
+export const getTaskSavedSuccess = createSelector(getTaskFeatureState,
+    state => state.taskSavedSuccess);
 
-export const getTasks = createSelector(
-  getTaskFeatureState,
-  state => state.tasks
-);
+export const getError = createSelector(getTaskFeatureState,
+    state => state.error);
+
+export const getTasks = createSelector(getTaskFeatureState,
+    state => state.tasks);
 
 export const getCurrentTask = createSelector(
   getTaskFeatureState,
