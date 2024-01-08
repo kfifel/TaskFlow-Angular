@@ -5,8 +5,17 @@ import {ITask} from "../task.model";
 export const toggleIsLoading =
   createAction('[Task] Is Loading');
 
-export const addTask =
-  createAction('[Task] Add New Task', props<{task: ITask}>());
+export const saveTask = createAction('[Task] Save Task', props<{ task: ITask }>());
+export const saveTaskSuccess = createAction('[Task] Save Task Success', props<{ task: ITask }>());
+export const saveTaskError = createAction('[Task] Save Task Error', props<{ error: string }>());
+
+
+export const getCurrentTask =
+  createAction('[Task] Get Current Task');
+
+
+export const setCurrentTask =
+  createAction('[Task] Set Current Task', props<{ currentTaskId: number }>());
 
 export const claireCurrentTask =
   createAction('[Task] Claire Current Task');

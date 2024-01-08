@@ -18,4 +18,8 @@ export class TaskService {
   getAllTasks(): Observable<ITask[]> {
     return this.http.get<ITask[]>(this.apiUrl);
   }
+
+  save(task: ITask) {
+    return this.http.post<ITask>(this.apiUrl, task);
+  }
 }

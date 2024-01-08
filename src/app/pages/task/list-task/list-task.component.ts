@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import {ITask} from "../task.model";
 import {Store} from "@ngrx/store";
-import {getIsLoadingTask, getTasks, State} from "../state/task.reducer";
+import {State} from "../state/task.reducer";
 import * as TaskActions from "../state/task.actions";
+import * as TaskSelectors from "../state/task.selectors";
 import {Observable} from "rxjs";
 
 @Component({
@@ -19,13 +20,13 @@ export class ListTaskComponent implements OnInit {
   constructor(private store: Store<State>) { }
 
   ngOnInit(): void {
-    this.store.select(getIsLoadingTask).subscribe((isLoading) => {
+    this.store.select(TaskSelectors.getIsLoadingTask).subscribe((isLoading) => {
       this.isLoading = isLoading;
     });
 
     this.store.dispatch(TaskActions.loadTasks());
 
-    this.tasks$ = this.store.select(getTasks);
+    this.tasks$ = this.store.select(TaskSelectors.getTasks);
   }
 
   toggleTasks() {

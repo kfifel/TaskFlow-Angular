@@ -6,15 +6,17 @@ import {TaskRoutingModule} from "./task-routing.module";
 import {UIModule} from "../../shared/ui/ui.module";
 import {NgbPaginationModule} from "@ng-bootstrap/ng-bootstrap";
 import {taskReducer} from "./state/task.reducer";
-import {FormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {EffectsModule} from "@ngrx/effects";
 import {TaskEffects} from "./state/task.effects";
 import {CommonModule} from "@angular/common";
+import { AddTaskComponent } from './add-task/add-task.component';
 
 
 @NgModule({
   declarations: [
-    ListTaskComponent
+    ListTaskComponent,
+    AddTaskComponent
   ],
   imports: [
     CommonModule,
@@ -25,6 +27,7 @@ import {CommonModule} from "@angular/common";
     UIModule,
     NgbPaginationModule,
     FormsModule,
+    ReactiveFormsModule,
   ],
   exports: [
   ]

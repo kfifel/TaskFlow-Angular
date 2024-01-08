@@ -2,6 +2,7 @@ import {createAction, createFeatureSelector, createReducer, createSelector, on} 
 import {ITask} from "../task.model";
 import * as AppState from '../../../state/app.state';
 import * as TaskActions from './task.actions';
+import {Tag} from "../../tag/tag.model";
 
 
 export interface State extends AppState.State {
@@ -11,31 +12,16 @@ export interface State extends AppState.State {
 export interface TaskState {
   isLoading: boolean;
   tasks: ITask[];
-  currentTask: ITask;
+  currentTaskId: number | null;
+  error: string;
 }
 
 const initialState: TaskState =   {
   isLoading: true,
-  currentTask: null,
+  currentTaskId: null,
   tasks: [],
+  error: ''
 };
-
-const getTaskFeatureState = createFeatureSelector<TaskState>('tasks');
-
-export const getIsLoadingTask = createSelector(
-  getTaskFeatureState,
-  state => state.isLoading
-);
-
-export const getTasks = createSelector(
-  getTaskFeatureState,
-  state => state.tasks
-);
-
-export const getCurrentTask = createSelector(
-  getTaskFeatureState,
-  state => state.currentTask
-);
 
 export const taskReducer = createReducer<TaskState>(
   initialState,
@@ -47,24 +33,33 @@ export const taskReducer = createReducer<TaskState>(
     };
   }),
 
-  on(TaskActions.addTask, (state, action): TaskState => {
+  on(TaskActions.saveTaskSuccess, (state, action): TaskState => {
     return {
       ...state,
-      tasks: [...state.tasks, action.task]
+      tasks: [...state.tasks, action.task],
+      error: ''
+    }
+  }),
+
+  on(TaskActions.saveTaskError, (state, action): TaskState => {
+    return {
+      ...state,
+      error: action.error
     }
   }),
 
   on(TaskActions.claireCurrentTask, (state): TaskState => {
     return {
       ...state,
-      currentTask: null
+      currentTaskId: null
     }
   }),
 
   on(TaskActions.loadTasksSuccess, (state, action): TaskState => {
     return {
       ...state,
-      tasks: action.tasks
+      tasks: action.tasks,
+      error: ''
     }
   }),
 );
