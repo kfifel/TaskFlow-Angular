@@ -6,7 +6,6 @@ import {Tag} from "../../tag/tag.model";
 import * as TaskActions from '../state/task.actions';
 import * as TaskSelectors from "../state/task.selectors";
 import {Router} from "@angular/router";
-import {getTaskSavedSuccess} from "../state/task.selectors";
 
 @Component({
   selector: 'app-add-task',

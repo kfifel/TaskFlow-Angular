@@ -1,8 +1,7 @@
-import {createAction, createFeatureSelector, createReducer, createSelector, on} from "@ngrx/store";
+import { createReducer, on} from "@ngrx/store";
 import {ITask} from "../task.model";
 import * as AppState from '../../../state/app.state';
 import * as TaskActions from './task.actions';
-import {Tag} from "../../tag/tag.model";
 
 
 export interface State extends AppState.State {

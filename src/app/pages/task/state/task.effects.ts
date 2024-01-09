@@ -19,13 +19,13 @@ export class TaskEffects {
     return this.actions$.pipe(
       ofType(TaskActions.loadTasks),
       withLatestFrom(this.store.pipe(select(TaskSelectors.getTasks))),
-      mergeMap(([action, tasks]) => {
+      mergeMap(([, tasks]) => {
         if (tasks.length > 0) {
           return EMPTY;
         } else {
           return this.taskService.getAllTasks().pipe(
             map(tasks => TaskActions.loadTasksSuccess({tasks})),
-            //catchError((err) => TaskActions.loadTasksError(err))
+            catchError(async (err) => TaskActions.loadTasksError(err))
           )
         }
       })
